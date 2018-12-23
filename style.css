@@ -1,0 +1,23 @@
+.images {
+    margin-bottom: 30px;
+    margin-left: 40px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+  background:grey;
+  height:90%;
+  width:50%;
+  margin:auto;
+}
+.row img {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 40px 40px;
+}
+
+      
+
