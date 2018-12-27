@@ -4,11 +4,18 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header id="head">
+<h1>Basic Image Site</h1>
+<div>
+<a href="sample.php?page=0">Home</a>
+</div>
+</header>
 
     <form action="upload.php" method="post" enctype="multipart/form-data">
         Select image to upload:
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit">
+        <input type="text" name="tag">
     </form>
     
 
@@ -16,13 +23,21 @@
             <?php     
                 require '../../configure.php';
                 
+                //error_reporting(0);       //turn off error reporting, not to be used during testing.
+                
                 $db_handle = mysqli_connect(DB_SERVER,DB_USER,DB_PASS);
                 
                 $database="images";
                 
                 $db_found = mysqli_select_db( $db_handle, $database );
                 
-                $start = intval($_GET['page'])*3;
+                if(isset($_GET['page'])){
+                   $start = intval($_GET['page'])*3;    //if page is set, multiply by 3 for starting value 
+                }
+                else {
+                    header("Refresh:0; url=sample.php?page=0");     //refresh and set page=0
+                }
+                
                 
                 $SQL = "SELECT * FROM tbl_images WHERE ID LIMIT ".$start.",3";
                 
@@ -30,7 +45,7 @@
                 
                 
                 while ( $db_field = mysqli_fetch_assoc($result) ) {
-                    echo '<div><img class="images" src="'.$db_field['fileName'].'" /><br /></div>';
+                    echo '<div><a href="image.php?image='.$db_field['fileName'].'"><img class="images" src="uploads/'.$db_field['fileName'].'"/></a><br /></div>';
                 }
                 
                 $SQL = "SELECT * FROM tbl_images";

@@ -49,7 +49,7 @@
                 $db_found = mysqli_select_db( $db_handle, $database );
                 
                 
-                $img = 'uploads/'.basename($_FILES['fileToUpload']['name']);
+                $img = basename($_FILES['fileToUpload']['name']);
                 $SQL = "INSERT INTO tbl_images (fileName) VALUES ('$img')";
                 
                 $result = mysqli_query($db_handle, $SQL);
@@ -62,7 +62,7 @@
         
         mysqli_close($db_handle);
         
-        header("Refresh:0; url=sample.php");
+        header("Refresh:0; url=sample.php?page=0");
     
 ?>
 
