@@ -1,9 +1,11 @@
 .images {
     margin-bottom: 30px;
-    margin-left: 40px;
+    margin-left:40px;
+    width:100px;
+    height:100px;
 }
 
-.row {
+#row {
   display: flex;
   flex-wrap: wrap;
   padding: 0 4px;
@@ -12,12 +14,9 @@
   width:50%;
   margin:auto;
 }
-.row img {
-    float: left;
-    width: 100px;
-    height: 100px;
-    margin: 40px 40px;
+
+#num {
+    margin-top:auto;
+    margin-right:50%;
+    margin-left: 50%;
 }
-
-      
-
