@@ -11,6 +11,12 @@
 <a href="sample.php?page=0">Home</a>
 </div>
 </header>
+<form action="add_tag.php" method="post" enctype="multipart/form-data">
+        Add a tag to image:
+        <input type="text" name="tag">
+        <input type='hidden' name='image' value='<?php echo $_GET['image'];?>'/> 
+        <input type="submit" value="Add tag" name="submit">
+</form>
 
 <?php
 
