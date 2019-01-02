@@ -17,6 +17,12 @@
         <input type="submit" value="Upload Image" name="submit">
     </form>
     
+    <form action="search.php">
+        Search:
+        <input type="text" name="search">
+        <input type="submit">
+    </form>
+    
 
     <div id="row">
             <?php     
@@ -28,17 +34,19 @@
                 
                 $database="images";
                 
+                $numImages = 4; //number of images per page
+                
                 $db_found = mysqli_select_db( $db_handle, $database );
                 
                 if(isset($_GET['page'])){
-                   $start = intval($_GET['page'])*3;    //if page is set, multiply by 3 for starting value 
+                   $start = intval($_GET['page'])* $numImages;    //if page is set, multiply by numImages for starting value 
                 }
                 else {
                     header("Refresh:0; url=sample.php?page=0");     //refresh and set page=0
                 }
                 
                 
-                $SQL = "SELECT * FROM tbl_images WHERE ID LIMIT ".$start.",3";
+                $SQL = "SELECT * FROM tbl_images WHERE ID LIMIT ".$start.",".$numImages."";
                 
                 $result = mysqli_query($db_handle, $SQL);
                 
@@ -54,13 +62,11 @@
                 
                 mysqli_close($db_handle);
                 echo '<div id="num">';
-                for($x = 0; $x <= $num_row/3; $x++){
+                for($x = 0; $x <= $num_row/$numImages; $x++){
                     echo '<a href="sample.php?page='.$x.'">'.($x+1).'</a>';
                 }
                 echo '</div>';
             ?>
-            
-            
     </div>
 
 </body>
