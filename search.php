@@ -6,10 +6,13 @@
 
 <body>
 <header id="head">
-<h1>Basic Image Site</h1>
-<div>
-<a href="sample.php?page=0">Home</a>
-</div>
+    <div>
+    <ul>
+      <li><a href="sample.php?page=0">Home</a></li>
+      <li><a href="contact.php">Contact</a></li>
+      <li><a href="about.asp">About</a></li>
+    </ul>
+    </div>
 </header>
 
 

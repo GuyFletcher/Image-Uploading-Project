@@ -1,5 +1,34 @@
-#head {
-    background:#6663B8;
+body {
+    padding-top:5%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position:fixed;
+  top:0;
+  width:100%;
+  left:0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
 }
 
 .images {
@@ -7,14 +36,22 @@
     height:100px;
 }
 
-#row {
-  display: flex;
-  flex-wrap: wrap;
+#column1 {
+  float: left;
+  width: 25%;
+}
+
+#column2 {
+  float: left;
+  width: 75%;
   justify-content: space-between;
-  background:grey;
-  height:90%;
-  width:50%;
-  margin:auto;
+}
+
+/* Clear floats after the columns */
+#row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 #num {
@@ -30,7 +67,9 @@
     margin-left:5%;
 }
 
-#tags {
+.imgRow {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom:5%;
 }
