@@ -60,6 +60,12 @@ li a:hover {
     margin-left: 50%;
 }
 
+.pgNum {
+    color:green;
+    text-decoration:none;
+    font-size:16pt;
+}
+
 #imgBod {
     display: flex;
     justify-content: space-between;
@@ -68,8 +74,19 @@ li a:hover {
 }
 
 .imgRow {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-bottom:5%;
+    display: grid;
+    grid-column-gap:10%;
+    grid-row-gap:10%;
+    grid-template-columns: auto auto auto auto;
 }
+
+
+
+
+
+
+
+
+
+
+
