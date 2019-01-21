@@ -51,10 +51,27 @@
                         header("Refresh:0; url=sample.php?search=".$_GET['search']."&page=0");
                     }
                     
+                    $query = explode(" ", $_GET['search']);
+                    $SQL = "SELECT DISTINCT fileName FROM tbl_images 
+                    JOIN tbl_img_tags ON tbl_img_tags.IMG_ID = tbl_images.ID 
+                    WHERE tbl_img_tags.IMG_ID IN (SELECT it.IMG_ID FROM tbl_img_tags it 
+                                                JOIN tbl_tags ON tbl_tags.ID = it.TAG_ID 
+                                                GROUP BY it.IMG_ID 
+                                                HAVING ";
+                    foreach ($query as $q) {
+                        if($q[0] == '-'){
+                            $q = substr($q, 1);
+                            $SQL .= " SUM(CASE WHEN tbl_tags.tag = '".$q."' THEN 1 ELSE 0 END) = 0 ";
+                        } else {
+                            $SQL .= " SUM(CASE WHEN tbl_tags.tag = '".$q."' THEN 1 ELSE 0 END) > 0 ";
+                        }
+ 
+                        if(next($query) == true) {
+                             $SQL .= " AND ";
+                        }
+                    }
                     
-                    $SQL = "SELECT tbl_images.fileName FROM tbl_images 
-                    INNER JOIN tbl_img_tags ON tbl_images.ID = tbl_img_tags.IMG_ID 
-                    INNER JOIN tbl_tags ON tbl_img_tags.TAG_ID = tbl_tags.ID WHERE tbl_tags.tag = '".$_GET['search']."' LIMIT ".$start.",".$numImages."";
+                    $SQL .= ") LIMIT ".$start.",".$numImages."";
                     
                     $result = mysqli_query($db_handle, $SQL);
                     
